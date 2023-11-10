@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.enjoytrip.mapper.MemberMapper">
+    <resultMap id="member" type="MemberDto">
+        <id column="id" property="id"/>
+        <result column="password" property="password"/>
+        <result column="name" property="name"/>
+        <result column="nickname" property="nickname"/>
+        <result column="joindate" property="joindate"/>
+        <result column="admin" property="admin"/>
+        <result column="deleted" property="deleted"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="member" resultType="MemberDto">
+        select id, password, name, nickname, joindate, admin, deleted
+        from members;
+    </select>
+
+    <select id="selectById" resultMap="member" resultType="MemberDto" parameterType="String">
+        select id, password, name, nickname, joindate, admin, deleted
+        from members
+        where id=#{id};
+    </select>
+</mapper>

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/member")
@@ -34,6 +35,17 @@ public class MemberController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(memberDto);
+    }
+
+    
+    @GetMapping("/login")
+    public ResponseEntity<?> login(@RequestBody MemberDto member) {
+        System.out.println("login 할 유저 : " + member);
+        Map<String, Object> loginInfo = memberService.loginMember(member);
+        if (loginInfo == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(loginInfo);
     }
 
     @PostMapping

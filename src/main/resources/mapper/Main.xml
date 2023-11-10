@@ -23,7 +23,15 @@
         select id, password, name, nickname, joindate, admin, deleted
         from members
         where id=#{id}
-        and deleted = 0
+          and deleted = 0
+    </select>
+
+    <select id="loginMember" resultMap="member" resultType="MemberDto" parameterType="MemberDto">
+        select id, name, nickname, joindate, admin
+        from members
+        where id=#{id}
+          and password=#{password}
+          and deleted = 0
     </select>
 
     <insert id="insertUser" parameterType="MemberDto">

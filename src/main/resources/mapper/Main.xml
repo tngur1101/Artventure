@@ -15,12 +15,34 @@
 
     <select id="selectAll" resultMap="member" resultType="MemberDto">
         select id, password, name, nickname, joindate, admin, deleted
-        from members;
+        from members
+        where deleted = 0
     </select>
 
     <select id="selectById" resultMap="member" resultType="MemberDto" parameterType="String">
         select id, password, name, nickname, joindate, admin, deleted
         from members
-        where id=#{id};
+        where id=#{id}
+        and deleted = 0
     </select>
+
+    <insert id="insertUser" parameterType="MemberDto">
+        insert into members (id, password, name, nickname)
+        values (#{id}, #{password}, #{name}, #{nickname})
+    </insert>
+
+
+    <update id="deleteById" parameterType="String">
+        update members
+        set deleted = 1
+        where id = #{id}
+    </update>
+
+    <update id="updateUser" parameterType="MemberDto">
+        update members
+        set password = #{password}, name=#{name}, nickname=#{nickname}
+        where id = #{id}
+    </update>
+
+
 </mapper>

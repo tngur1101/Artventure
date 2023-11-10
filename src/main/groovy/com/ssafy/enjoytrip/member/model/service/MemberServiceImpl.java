@@ -1,6 +1,6 @@
 package com.ssafy.enjoytrip.member.model.service;
 
-import com.ssafy.enjoytrip.mapper.MemberMapper;
+import com.ssafy.enjoytrip.member.model.mapper.MemberMapper;
 import com.ssafy.enjoytrip.member.model.dto.MemberDto;
 import com.ssafy.enjoytrip.util.JWTUtil;
 import lombok.AllArgsConstructor;

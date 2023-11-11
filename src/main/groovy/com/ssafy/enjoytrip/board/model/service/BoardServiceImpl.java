@@ -22,5 +22,10 @@ public class BoardServiceImpl implements BoardService{
         return boardMapper.selectAll(type);
     }
 
+    @Override
+    public BoardDto selectByArticleNo(String type, String articleNo) {
+        return boardMapper.selectByArticleNo(type, articleNo);
+    }
+
 
 }

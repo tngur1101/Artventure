@@ -8,4 +8,5 @@ public interface BoardService {
 
     public void writeArticle(BoardDto boardDto);
     public List<BoardDto> selectAll(String type);
+    public BoardDto selectByArticleNo(String type, String articleNo);
 }

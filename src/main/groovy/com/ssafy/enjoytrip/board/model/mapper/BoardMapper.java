@@ -13,5 +13,7 @@ public interface BoardMapper {
     /*게시글 전체 조회*/
     List<BoardDto> selectAll(String type);
 
+    /* 게시글 상세 조회 */
+    BoardDto selectByArticleNo(String type, String articleNo);
 
 }

@@ -29,6 +29,11 @@ public class BoardController {
         return ResponseEntity.status(HttpStatus.OK).body(list);
     }
 
+    @GetMapping("/{type}/{articleNo}")
+    public ResponseEntity<BoardDto> selectByArticleNo(@PathVariable("type") String type,@PathVariable("articleNo") String articleNo){
+        BoardDto board = boardService.selectByArticleNo(type, articleNo);
+        return ResponseEntity.status(HttpStatus.OK).body(board);
+    }
 
 
 }

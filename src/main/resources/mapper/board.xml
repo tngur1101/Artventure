@@ -19,10 +19,16 @@
         values (#{title}, #{content}, #{author}, #{type}, #{regionId})
     </insert>
 
-    <select id="selectAll" resultMap="board" resultType="BoardDto">
+    <select id="selectAll" resultMap="board" resultType="BoardDto" parameterType="String">
         select title, content, author, write_date, update_date, type, region_id
         from articles
         where type = #{type}
+    </select>
+
+    <select id="selectByArticleNo" resultMap="board" resultType="BoardDto" parameterType="map">
+        select article_no, title, content, author, write_date, update_date, type, region_id
+        from articles
+        where type = #{type} and article_no = #{articleNo}
     </select>
 
 </mapper>

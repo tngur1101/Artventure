@@ -7,6 +7,6 @@ import java.util.List;
 public interface BoardService {
 
     public void writeArticle(BoardDto boardDto);
-    public List<BoardDto> selectAll(String type);
-    public BoardDto selectByArticleNo(String type, String articleNo);
+    public List<BoardDto> selectAll(int type);
+    public BoardDto selectByArticleNo(int type, String articleNo);
 }

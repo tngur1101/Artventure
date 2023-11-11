@@ -2,6 +2,7 @@ package com.ssafy.enjoytrip.board.model.mapper;
 
 import com.ssafy.enjoytrip.board.model.dto.BoardDto;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -11,9 +12,9 @@ public interface BoardMapper {
     void writeArticle(BoardDto boardDto);
 
     /*게시글 전체 조회*/
-    List<BoardDto> selectAll(String type);
+    List<BoardDto> selectAll(int type);
 
     /* 게시글 상세 조회 */
-    BoardDto selectByArticleNo(String type, String articleNo);
+    BoardDto selectByArticleNo(@Param("type") int type,@Param("articleNo") String articleNo);
 
 }

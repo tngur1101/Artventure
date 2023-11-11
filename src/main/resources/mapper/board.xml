@@ -19,7 +19,7 @@
         values (#{title}, #{content}, #{author}, #{type}, #{regionId})
     </insert>
 
-    <select id="selectAll" resultMap="board" resultType="BoardDto" parameterType="String">
+    <select id="selectAll" resultMap="board" resultType="BoardDto" parameterType="int">
         select title, content, author, write_date, update_date, type, region_id
         from articles
         where type = #{type}

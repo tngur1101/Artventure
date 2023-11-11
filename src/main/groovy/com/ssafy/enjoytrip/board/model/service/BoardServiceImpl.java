@@ -18,12 +18,12 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public List<BoardDto> selectAll(String type) {
+    public List<BoardDto> selectAll(int type) {
         return boardMapper.selectAll(type);
     }
 
     @Override
-    public BoardDto selectByArticleNo(String type, String articleNo) {
+    public BoardDto selectByArticleNo(int type, String articleNo) {
         return boardMapper.selectByArticleNo(type, articleNo);
     }
 

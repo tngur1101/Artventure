@@ -24,13 +24,13 @@ public class BoardController {
     }
 
     @GetMapping("/{type}")
-    public ResponseEntity<List<BoardDto>> selectAll(@PathVariable String type){
+    public ResponseEntity<List<BoardDto>> selectAll(@PathVariable int type){
         List<BoardDto> list = boardService.selectAll(type);
         return ResponseEntity.status(HttpStatus.OK).body(list);
     }
 
     @GetMapping("/{type}/{articleNo}")
-    public ResponseEntity<BoardDto> selectByArticleNo(@PathVariable("type") String type,@PathVariable("articleNo") String articleNo){
+    public ResponseEntity<BoardDto> selectByArticleNo(@PathVariable("type") int type,@PathVariable("articleNo") String articleNo){
         BoardDto board = boardService.selectByArticleNo(type, articleNo);
         return ResponseEntity.status(HttpStatus.OK).body(board);
     }

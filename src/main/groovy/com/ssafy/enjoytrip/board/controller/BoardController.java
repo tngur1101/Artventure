@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/board")
@@ -20,5 +22,13 @@ public class BoardController {
         boardService.writeArticle(boardDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    @GetMapping("/{type}")
+    public ResponseEntity<List<BoardDto>> selectAll(@PathVariable String type){
+        List<BoardDto> list = boardService.selectAll(type);
+        return ResponseEntity.status(HttpStatus.OK).body(list);
+    }
+
+
 
 }

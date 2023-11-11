@@ -5,6 +5,8 @@ import com.ssafy.enjoytrip.board.model.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService{
@@ -13,5 +15,10 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public void writeArticle(BoardDto boardDto) {
         boardMapper.writeArticle(boardDto);
+    }
+
+    @Override
+    public List<BoardDto> selectNotifications() {
+        return boardMapper.selectNotifications();
     }
 }

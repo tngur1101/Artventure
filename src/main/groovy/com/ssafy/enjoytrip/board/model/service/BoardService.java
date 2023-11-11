@@ -7,5 +7,5 @@ import java.util.List;
 public interface BoardService {
 
     public void writeArticle(BoardDto boardDto);
-    public List<BoardDto> selectNotifications();
+    public List<BoardDto> selectAll(String type);
 }

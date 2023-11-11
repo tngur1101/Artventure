@@ -18,7 +18,9 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public List<BoardDto> selectNotifications() {
-        return boardMapper.selectNotifications();
+    public List<BoardDto> selectAll(String type) {
+        return boardMapper.selectAll(type);
     }
+
+
 }

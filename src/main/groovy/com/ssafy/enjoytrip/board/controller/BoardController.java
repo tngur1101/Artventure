@@ -24,10 +24,11 @@ public class BoardController {
     }
 
     @GetMapping("/{type}")
-    public ResponseEntity<List<BoardDto>> selectNotifications(){
-        List<BoardDto> list = boardService.selectNotifications();
+    public ResponseEntity<List<BoardDto>> selectAll(@PathVariable String type){
+        List<BoardDto> list = boardService.selectAll(type);
         return ResponseEntity.status(HttpStatus.OK).body(list);
     }
+
 
 
 }

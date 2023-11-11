@@ -10,12 +10,8 @@ public interface BoardMapper {
 
     void writeArticle(BoardDto boardDto);
 
-    /*공지 글 전체 조회*/
-    List<BoardDto> selectNotifications();
-
-    /*공략글 전체 조회*/
-
-    /*건의 글 전체 조회*/
+    /*게시글 전체 조회*/
+    List<BoardDto> selectAll(String type);
 
 
 }

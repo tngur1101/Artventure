@@ -41,5 +41,10 @@ public class BoardController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
+    @PutMapping
+    public ResponseEntity<?> updateArticle(@RequestBody BoardDto boardDto){
+        boardService.updateArticle(boardDto);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
 
 }

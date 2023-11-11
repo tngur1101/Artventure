@@ -37,4 +37,10 @@
         where article_no=#{articleNo}
     </delete>
 
+    <update id="updateArticle" parameterType="BoardDto">
+        update articles
+        set content = #{content}
+        where article_no = #{articleNo}
+    </update>
+
 </mapper>

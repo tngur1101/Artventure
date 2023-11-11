@@ -12,4 +12,6 @@ public interface BoardService {
 
     public void deleteArticle(String articleNo);
 
+    public void updateArticle(BoardDto boardDto);
+
 }

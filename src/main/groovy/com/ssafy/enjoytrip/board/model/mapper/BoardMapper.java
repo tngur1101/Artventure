@@ -20,4 +20,7 @@ public interface BoardMapper {
     /* 게시글 삭제 */
     void deleteArticle(String articleNo);
 
+    /* 게시글 수정 */
+    void updateArticle(BoardDto boardDto);
+
 }

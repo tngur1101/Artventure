@@ -32,5 +32,10 @@ public class BoardServiceImpl implements BoardService{
         boardMapper.deleteArticle(articleNo);
     }
 
+    @Override
+    public void updateArticle(BoardDto boardDto) {
+        boardMapper.updateArticle(boardDto);
+    }
+
 
 }

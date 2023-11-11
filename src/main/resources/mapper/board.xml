@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.enjoytrip.board.model.mapper.BoardMapper">
+    <resultMap id="board" type="BoardDto">
+        <result column="article_no" property="articleNo" />
+        <result column="title" property="title" />
+        <result column="content" property="content" />
+        <result column="author" property="author" />
+        <result column="write_date" property="writeDate" />
+        <result column="update_date" property="updateDate" />
+        <result column="type" property="type" />
+        <result column="region_id" property="regionId" />
+    </resultMap>
+
+    <insert id="writeArticle" parameterType="BoardDto">
+        insert into articles (title, content, author, type, region_id)
+        values (#{title}, #{content}, #{author}, #{type}, #{regionId})
+    </insert>
+
+</mapper>

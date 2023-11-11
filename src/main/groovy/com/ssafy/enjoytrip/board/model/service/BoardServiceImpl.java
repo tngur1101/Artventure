@@ -27,5 +27,10 @@ public class BoardServiceImpl implements BoardService{
         return boardMapper.selectByArticleNo(type, articleNo);
     }
 
+    @Override
+    public void deleteArticle(String articleNo) {
+        boardMapper.deleteArticle(articleNo);
+    }
+
 
 }

@@ -17,4 +17,7 @@ public interface BoardMapper {
     /* 게시글 상세 조회 */
     BoardDto selectByArticleNo(@Param("type") int type,@Param("articleNo") String articleNo);
 
+    /* 게시글 삭제 */
+    void deleteArticle(String articleNo);
+
 }

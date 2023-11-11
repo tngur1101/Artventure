@@ -35,5 +35,11 @@ public class BoardController {
         return ResponseEntity.status(HttpStatus.OK).body(board);
     }
 
+    @DeleteMapping("/{articleNo}")
+    public ResponseEntity<?> deleteArticle(@PathVariable String articleNo){
+        boardService.deleteArticle(articleNo);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
 
 }

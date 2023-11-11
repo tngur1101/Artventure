@@ -9,4 +9,7 @@ public interface BoardService {
     public void writeArticle(BoardDto boardDto);
     public List<BoardDto> selectAll(int type);
     public BoardDto selectByArticleNo(int type, String articleNo);
+
+    public void deleteArticle(String articleNo);
+
 }

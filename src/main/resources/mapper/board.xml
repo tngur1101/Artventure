@@ -31,4 +31,10 @@
         where type = #{type} and article_no = #{articleNo}
     </select>
 
+    <!--유저 일치 부분도 넣어야 함 추후 수정 예정-->
+    <delete id="deleteArticle" parameterType="String">
+        delete from articles
+        where article_no=#{articleNo}
+    </delete>
+
 </mapper>

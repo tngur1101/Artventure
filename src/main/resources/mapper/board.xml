@@ -19,10 +19,28 @@
         values (#{title}, #{content}, #{author}, #{type}, #{regionId})
     </insert>
 
-    <select id="selectAll" resultMap="board" resultType="BoardDto">
+    <select id="selectAll" resultMap="board" resultType="BoardDto" parameterType="int">
         select title, content, author, write_date, update_date, type, region_id
         from articles
         where type = #{type}
     </select>
+
+    <select id="selectByArticleNo" resultMap="board" resultType="BoardDto" parameterType="map">
+        select article_no, title, content, author, write_date, update_date, type, region_id
+        from articles
+        where type = #{type} and article_no = #{articleNo}
+    </select>
+
+    <!--유저 일치 부분도 넣어야 함 추후 수정 예정-->
+    <delete id="deleteArticle" parameterType="String">
+        delete from articles
+        where article_no=#{articleNo}
+    </delete>
+
+    <update id="updateArticle" parameterType="BoardDto">
+        update articles
+        set content = #{content}
+        where article_no = #{articleNo}
+    </update>
 
 </mapper>

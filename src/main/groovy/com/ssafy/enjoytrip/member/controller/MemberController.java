@@ -38,7 +38,7 @@ public class MemberController {
     }
 
     
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody MemberDto member) {
         System.out.println("login 할 유저 : " + member);
         Map<String, Object> loginInfo = memberService.loginMember(member);

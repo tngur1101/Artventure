@@ -25,7 +25,7 @@ public class JWTUtil {
 		header.put("typ", "JWT");
 		
 		Claims claims = Jwts.claims();
-		claims.put("userId", member.getId());
+		claims.put("id", member.getId());
 		claims.put("nickname", member.getNickname());
 		claims.put("admin", member.isAdmin());
 		claims.put("joindate", member.getJoindate());

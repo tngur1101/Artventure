@@ -43,6 +43,7 @@ public class MemberController {
         System.out.println("login 할 유저 : " + member);
         Map<String, Object> loginInfo = memberService.loginMember(member);
         if (loginInfo == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        System.out.println("login 정보 : " + loginInfo);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(loginInfo);

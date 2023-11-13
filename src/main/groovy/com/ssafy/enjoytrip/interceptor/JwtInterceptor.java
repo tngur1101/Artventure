@@ -32,6 +32,7 @@ public class JwtInterceptor implements HandlerInterceptor {
         }
 
         try {
+            
             String jwtToken = token.substring(7); // "Bearer " 이후의 토큰 부분 추출
             // 토큰 검증 로직 구현
             Jws<Claims> parsedToken = JWTUtil.validateToken(jwtToken);

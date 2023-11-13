@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.enjoytrip.region.model.mapper.RegionMapper">
+    <resultMap id="complete" type="Complete">
+        <result column="user_id" property="userId"/>
+        <result column="feat_id" property="featId"/>
+        <result column="feat_time" property="featTime"/>
+    </resultMap>
+
+    <resultMap id="feat" type="Feat">
+        <result column="feat_id" property="featId"/>
+        <result column="name" property="name"/>
+        <result column="region_id" property="regionId"/>
+        <result column="description" property="description"/>
+        <result column="latitude" property="latitude"/>
+        <result column="longitude" property="longitude"/>
+        <result column="order" property="order"/>
+    </resultMap>
+
+    <select id="selectComplete" resultMap="complete" parameterType="hashmap">
+        select c.feat_id, c.feat_time
+        from feats f
+        join completes c
+        on f.feat_id = c.feat_id
+        where c.user_id = #{userId}
+        and f.region_id = #{regionId}
+    </select>
+
+    <select id="selectFeat" resultMap="feat" parameterType="int">
+        select feat_id, name, region_id, description, latitude, longitude, `order`
+        from feats
+        where region_id = #{regionId}
+        order by `order` asc
+    </select>
+</mapper>

@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface BoardMapper {
@@ -12,7 +13,7 @@ public interface BoardMapper {
     void writeArticle(BoardDto boardDto);
 
     /*게시글 전체 조회*/
-    List<BoardDto> selectAll(int type);
+    List<BoardDto> listArticle(Map<String, Object> map);
 
     /* 게시글 상세 조회 */
     BoardDto selectByArticleNo(@Param("type") int type,@Param("articleNo") String articleNo);
@@ -22,5 +23,7 @@ public interface BoardMapper {
 
     /* 게시글 수정 */
     void updateArticle(BoardDto boardDto);
+
+    int getTotalArticleCount(Map<String, Object> param);
 
 }

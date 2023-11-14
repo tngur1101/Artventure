@@ -19,6 +19,15 @@
         values (#{title}, #{content}, #{author}, #{type}, #{regionId})
     </insert>
 
+    <!--이미지 파일 등록 쿼리-->
+    <insert id="registerFile" parameterType="boardDto">
+        insert into images (article_no, save_folder, save_file)
+        values
+        <foreach collection="fileInfos" item="fileInfo" separator=" , ">
+            (#{articleNo}, #{fileInfo.saveFolder}, #{fileInfo.saveFile})
+        </foreach>
+    </insert>
+
     <select id="listArticle" resultMap="board" resultType="BoardDto" parameterType="map">
         select title, content, author, write_date, update_date, type, region_id
         from articles
@@ -63,7 +72,6 @@
         <where>
             <include refid="search"></include>
         </where>
-
     </select>
 
 </mapper>

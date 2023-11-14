@@ -2,6 +2,8 @@ package com.ssafy.enjoytrip.board.model.dto;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,5 +20,6 @@ public class BoardDto {
     private String updateDate;
     @NonNull private int type;
     @NonNull private int regionId;
+    private List<FileInfoDto> fileInfos;
 
 }

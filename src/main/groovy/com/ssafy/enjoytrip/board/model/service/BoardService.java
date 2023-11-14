@@ -10,7 +10,7 @@ public interface BoardService {
 
     public void writeArticle(BoardDto boardDto);
     public BoardListDto listArticle(Map<String, String> map);
-    public BoardDto selectByArticleNo(int type, String articleNo);
+    public BoardDto selectByArticleNo(String articleNo);
 
     public void deleteArticle(String articleNo);
 

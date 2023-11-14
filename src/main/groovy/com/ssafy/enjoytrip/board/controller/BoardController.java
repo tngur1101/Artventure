@@ -36,8 +36,8 @@ public class BoardController {
     }
 
     @GetMapping("/{articleNo}")
-    public ResponseEntity<BoardDto> selectByArticleNo(@RequestParam int type,@PathVariable String articleNo){
-        BoardDto board = boardService.selectByArticleNo(type, articleNo);
+    public ResponseEntity<BoardDto> selectByArticleNo(@PathVariable String articleNo){
+        BoardDto board = boardService.selectByArticleNo(articleNo);
         return ResponseEntity.status(HttpStatus.OK).body(board);
     }
 
@@ -47,6 +47,15 @@ public class BoardController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
+    /*수정 할 글 얻기*/
+    @GetMapping("/modify/{articleNo}")
+    public ResponseEntity<BoardDto> getModifyArticle(@PathVariable String articleNo){
+        BoardDto board = boardService.selectByArticleNo(articleNo);
+        return ResponseEntity.status(HttpStatus.OK).body(board);
+    }
+
+
+    /*글 수정*/
     @PutMapping
     public ResponseEntity<?> updateArticle(@RequestBody BoardDto boardDto){
         boardService.updateArticle(boardDto);

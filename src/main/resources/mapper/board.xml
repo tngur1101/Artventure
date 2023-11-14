@@ -27,10 +27,10 @@
         </if>
     </select>
 
-    <select id="selectByArticleNo" resultMap="board" resultType="BoardDto" parameterType="map">
+    <select id="selectByArticleNo" resultMap="board" resultType="BoardDto" parameterType="String">
         select article_no, title, content, author, write_date, update_date, type, region_id
         from articles
-        where type = #{type} and article_no = #{articleNo}
+        where article_no = #{articleNo}
     </select>
 
     <!--유저 일치 부분도 넣어야 함 추후 수정 예정-->

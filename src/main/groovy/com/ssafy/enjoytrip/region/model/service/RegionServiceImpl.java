@@ -1,6 +1,7 @@
 package com.ssafy.enjoytrip.region.model.service;
 
 import com.ssafy.enjoytrip.region.model.dto.Region;
+import com.ssafy.enjoytrip.region.model.dto.Sido;
 import com.ssafy.enjoytrip.region.model.mapper.RegionMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,12 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class RegionServiceImpl implements RegionService {
     private final RegionMapper regionMapper;
+
+    @Override
+    public List<Sido> selectAllSido() {
+        return regionMapper.selectAllSido();
+    }
+
     @Override
     public Region getRegion(Map<String, Object> data) {
         Region region = new Region();

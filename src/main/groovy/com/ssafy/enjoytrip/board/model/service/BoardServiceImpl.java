@@ -2,6 +2,7 @@ package com.ssafy.enjoytrip.board.model.service;
 
 import com.ssafy.enjoytrip.board.model.dto.BoardDto;
 import com.ssafy.enjoytrip.board.model.dto.BoardListDto;
+import com.ssafy.enjoytrip.board.model.dto.FileInfoDto;
 import com.ssafy.enjoytrip.board.model.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,12 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public void writeArticle(BoardDto boardDto) {
         boardMapper.writeArticle(boardDto);
+
+        //이미지 파일 등록하는 부분 -> 추후 프론트 생성 후 확인 필요!
+        List<FileInfoDto> fileInfos = boardDto.getFileInfos();
+        if(fileInfos != null && !fileInfos.isEmpty()){
+            boardMapper.registerFile(boardDto);
+        }
     }
 
     @Override

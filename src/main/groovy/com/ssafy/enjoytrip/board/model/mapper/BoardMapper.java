@@ -26,4 +26,6 @@ public interface BoardMapper {
 
     int getTotalArticleCount(Map<String, Object> param);
 
+    void registerFile(BoardDto boardDto);
+
 }

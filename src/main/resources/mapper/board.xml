@@ -19,10 +19,12 @@
         values (#{title}, #{content}, #{author}, #{type}, #{regionId})
     </insert>
 
-    <select id="selectAll" resultMap="board" resultType="BoardDto" parameterType="int">
+    <select id="listArticle" resultMap="board" resultType="BoardDto" parameterType="map">
         select title, content, author, write_date, update_date, type, region_id
         from articles
-        where type = #{type}
+        <if test="type != null and type != ''">
+            where type = #{type}
+        </if>
     </select>
 
     <select id="selectByArticleNo" resultMap="board" resultType="BoardDto" parameterType="map">
@@ -42,5 +44,26 @@
         set content = #{content}
         where article_no = #{articleNo}
     </update>
+
+    <sql id="search">
+        <if test="content != null and content != ''">
+            <if test="key=='title'">
+                and title like concat('%', #{content}, '%')
+            </if>
+            <if test="key != 'title'">
+                and ${key} = #{content}
+            </if>
+        </if>
+    </sql>
+
+    <!--전체 article 개수 구하기-->
+    <select id="getTotalArticleCount" parameterType="map" resultType="int">
+        select count(article_no)
+        from articles
+        <where>
+            <include refid="search"></include>
+        </where>
+
+    </select>
 
 </mapper>

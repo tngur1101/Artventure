@@ -1,13 +1,16 @@
 package com.ssafy.enjoytrip.board.controller;
 
 import com.ssafy.enjoytrip.board.model.dto.BoardDto;
+import com.ssafy.enjoytrip.board.model.dto.BoardListDto;
 import com.ssafy.enjoytrip.board.model.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -23,14 +26,17 @@ public class BoardController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping("/{type}")
-    public ResponseEntity<List<BoardDto>> selectAll(@PathVariable int type){
-        List<BoardDto> list = boardService.selectAll(type);
-        return ResponseEntity.status(HttpStatus.OK).body(list);
+    //  http://localhost:80/board/1
+    // http://localhost:80/board?type=1&pgno=3
+    @GetMapping
+    public ResponseEntity<BoardListDto> selectAll(@RequestParam Map<String, String> map){
+        BoardListDto boardListDto = boardService.listArticle(map);
+
+        return ResponseEntity.ok().body(boardListDto);
     }
 
-    @GetMapping("/{type}/{articleNo}")
-    public ResponseEntity<BoardDto> selectByArticleNo(@PathVariable("type") int type,@PathVariable("articleNo") String articleNo){
+    @GetMapping("/{articleNo}")
+    public ResponseEntity<BoardDto> selectByArticleNo(@RequestParam int type,@PathVariable String articleNo){
         BoardDto board = boardService.selectByArticleNo(type, articleNo);
         return ResponseEntity.status(HttpStatus.OK).body(board);
     }

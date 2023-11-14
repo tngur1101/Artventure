@@ -16,7 +16,7 @@ public interface BoardMapper {
     List<BoardDto> listArticle(Map<String, Object> map);
 
     /* 게시글 상세 조회 */
-    BoardDto selectByArticleNo(@Param("type") int type,@Param("articleNo") String articleNo);
+    BoardDto selectByArticleNo(String articleNo);
 
     /* 게시글 삭제 */
     void deleteArticle(String articleNo);

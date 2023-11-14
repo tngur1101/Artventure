@@ -50,8 +50,8 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public BoardDto selectByArticleNo(int type, String articleNo) {
-        return boardMapper.selectByArticleNo(type, articleNo);
+    public BoardDto selectByArticleNo(String articleNo) {
+        return boardMapper.selectByArticleNo(articleNo);
     }
 
     @Override

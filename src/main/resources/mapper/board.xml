@@ -29,11 +29,13 @@
     </insert>
 
     <select id="listArticle" resultMap="board" resultType="BoardDto" parameterType="map">
-        select title, content, author, write_date, update_date, type, region_id
+        select article_no, title, content, author, write_date, update_date, type, region_id
         from articles
         <if test="type != null and type != ''">
             where type = #{type}
         </if>
+        order by article_no
+        limit #{start}, #{listsize};
     </select>
 
     <select id="selectByArticleNo" resultMap="board" resultType="BoardDto" parameterType="String">

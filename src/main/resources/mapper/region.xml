@@ -10,8 +10,12 @@
 
     <resultMap id="complete" type="Complete">
         <result column="user_id" property="userId"/>
+        <result column="name" property="name"/>
         <result column="feat_id" property="featId"/>
+        <result column="description" property="description"/>
         <result column="feat_time" property="featTime"/>
+        <result column="latitude" property="latitude"/>
+        <result column="longitude" property="longitude"/>
     </resultMap>
 
     <resultMap id="feat" type="Feat">
@@ -31,7 +35,7 @@
     </select>
 
     <select id="selectComplete" resultMap="complete" parameterType="hashmap">
-        select c.feat_id, c.feat_time
+        select c.feat_id, c.feat_time, f.name, f.description, f.latitude, f.longitude
         from feats f
         join completes c
         on f.feat_id = c.feat_id

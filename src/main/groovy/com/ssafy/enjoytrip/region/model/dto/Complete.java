@@ -8,7 +8,10 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class Complete {
-    private String userId;
     private int featId;
+    private String name;
+    private String description;
     private String featTime;
+    private double latitude;
+    private double longitude;
 }

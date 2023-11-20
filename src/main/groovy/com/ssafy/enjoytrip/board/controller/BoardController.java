@@ -28,8 +28,10 @@ public class BoardController {
 
     //  http://localhost:80/board/1
     // http://localhost:80/board?type=1&pgno=3
+    // http://localhost:80/board?regionid=3
     @GetMapping
     public ResponseEntity<BoardListDto> selectAll(@RequestParam Map<String, String> map){
+        System.out.println(map);
         BoardListDto boardListDto = boardService.listArticle(map);
 
         return ResponseEntity.ok().body(boardListDto);

@@ -33,6 +33,7 @@ public class BoardServiceImpl implements BoardService{
 
         param.put("type", map.get("type")==null?"":map.get("type"));
         param.put("word", map.get("word")==null?"":map.get("word"));
+        param.put("regionId", map.get("regionid") == null ? "" : map.get("regionid"));
         int currentPage = Integer.parseInt(map.get("pgno")==null?"1":map.get("pgno"));
         int sizePerPage = Integer.parseInt(map.get("spp")==null?"10":map.get("spp"));
 
@@ -43,8 +44,8 @@ public class BoardServiceImpl implements BoardService{
         String key = map.get("key");
         param.put("key", key==null?"":key);
 
+        System.out.println("param : "+param);
         List<BoardDto> list = boardMapper.listArticle(param);
-
         int totalArticleCount = boardMapper.getTotalArticleCount(param);
         int totalPageCount = (totalArticleCount-1)/sizePerPage+1;
 

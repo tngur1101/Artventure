@@ -31,9 +31,10 @@
     <select id="listArticle" resultMap="board" resultType="BoardDto" parameterType="map">
         select article_no, title, content, author, write_date, update_date, type, region_id
         from articles
-        <if test="type != null and type != ''">
-            where type = #{type}
-        </if>
+        <where>
+            <include refid="search"></include>
+        </where>
+        order by article_no desc
     </select>
 
     <select id="selectByArticleNo" resultMap="board" resultType="BoardDto" parameterType="String">
@@ -50,11 +51,17 @@
 
     <update id="updateArticle" parameterType="BoardDto">
         update articles
-        set content = #{content}
+        set content = #{content}, title= #{title}
         where article_no = #{articleNo}
     </update>
 
     <sql id="search">
+        <if test="regionId != null and regionId !=''">
+            and region_id = #{regionId}
+        </if>
+        <if test="type != null and type != ''">
+            and type = #{type}
+        </if>
         <if test="content != null and content != ''">
             <if test="key=='title'">
                 and title like concat('%', #{content}, '%')
@@ -62,6 +69,7 @@
             <if test="key != 'title'">
                 and ${key} = #{content}
             </if>
+
         </if>
     </sql>
 

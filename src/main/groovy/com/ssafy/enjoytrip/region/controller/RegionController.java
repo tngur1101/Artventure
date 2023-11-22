@@ -28,6 +28,7 @@ public class RegionController {
     }
 
     @PostMapping("/{regionId}")
+
     public ResponseEntity<?> getRegion(@RequestBody Map<String, Object> map, @PathVariable("regionId") int regionId) {
         System.out.println("요청 아이디 : " + map.get("userId") + ", 요청 지역 번호 : " + regionId);
         map.put("regionId", regionId);

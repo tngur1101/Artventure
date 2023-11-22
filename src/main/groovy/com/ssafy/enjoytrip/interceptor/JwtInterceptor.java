@@ -21,10 +21,11 @@ public class JwtInterceptor implements HandlerInterceptor {
         //GET, OPTIONS 요청의 경우 모두 허용
         String method = request.getMethod();
         log.debug("Intercept된 요청 Method:{}", method);
-        if(method.equals("GET") ) return true;
+
+        System.out.println("Intercept된 요청 Method : " + method);
+        if(method.equals("GET") || method.equals("OPTIONS") ) return true;
 
         final String token = request.getHeader("Authorization");
-
         if (token == null || !token.startsWith("Bearer ")) {
             log.debug("토큰이 없음");
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");

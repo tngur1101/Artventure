@@ -40,6 +40,7 @@ public class BoardServiceImpl implements BoardService{
         int start = currentPage*sizePerPage-sizePerPage;
 
         param.put("start", start);
+        param.put("spp", sizePerPage);
 
         String key = map.get("key");
         param.put("key", key==null?"":key);

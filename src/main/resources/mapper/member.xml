@@ -13,10 +13,25 @@
         <result column="deleted" property="deleted"/>
     </resultMap>
 
+    <resultMap id="complete" type="Complete">
+        <result column="name" property="name"/>
+        <result column="feat_id" property="featId"/>
+        <result column="description" property="description"/>
+        <result column="feat_time" property="featTime"/>
+        <result column="latitude" property="latitude"/>
+        <result column="longitude" property="longitude"/>
+    </resultMap>
+
     <select id="selectAll" resultMap="member" resultType="MemberDto">
         select id, password, name, nickname, joindate, admin, deleted
         from members
         where deleted = 0
+    </select>
+
+    <select id="selectUser" resultMap="member" parameterType="String">
+        select id, password, name, nickname, joindate, admin, deleted
+        from members
+        where id=#{id}
     </select>
 
     <select id="selectById" resultMap="member" resultType="MemberDto" parameterType="String">
@@ -52,5 +67,11 @@
         where id = #{id}
     </update>
 
-
+    <select id="selectCompleteById" resultMap="complete" parameterType="String">
+        select c.feat_id, c.feat_time, f.name, f.description, f.latitude, f.longitude
+        from feats f
+        join completes c
+        on f.feat_id = c.feat_id
+        where c.user_id = #{userId}
+    </select>
 </mapper>

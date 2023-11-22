@@ -1,6 +1,9 @@
 package com.ssafy.enjoytrip.member.model.dto;
 
+import com.ssafy.enjoytrip.region.model.dto.Complete;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,4 +23,5 @@ public class MemberDto {
     private String joindate;
     private boolean admin;
     private int deleted;
+    private List<Complete> completeList;
 }

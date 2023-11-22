@@ -9,7 +9,6 @@
     </resultMap>
 
     <resultMap id="complete" type="Complete">
-        <result column="user_id" property="userId"/>
         <result column="name" property="name"/>
         <result column="feat_id" property="featId"/>
         <result column="description" property="description"/>
@@ -40,7 +39,9 @@
         join completes c
         on f.feat_id = c.feat_id
         where c.user_id = #{userId}
-        and f.region_id = #{regionId}
+        <if test="regionId != null and region != ''">
+            and f.region_id = #{regionId}
+        </if>
     </select>
 
     <select id="selectFeat" resultMap="feat" parameterType="int">

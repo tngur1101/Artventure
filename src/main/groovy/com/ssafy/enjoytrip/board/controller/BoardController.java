@@ -31,7 +31,7 @@ public class BoardController {
     // http://localhost:80/board?regionid=3
     @GetMapping
     public ResponseEntity<BoardListDto> selectAll(@RequestParam Map<String, String> map){
-        System.out.println(map);
+        System.out.println("input param : "+map);
         BoardListDto boardListDto = boardService.listArticle(map);
 
         return ResponseEntity.ok().body(boardListDto);

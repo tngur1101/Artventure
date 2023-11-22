@@ -35,6 +35,7 @@
             <include refid="search"></include>
         </where>
         order by article_no desc
+        limit #{start}, #{spp}
     </select>
 
     <select id="selectByArticleNo" resultMap="board" resultType="BoardDto" parameterType="String">
@@ -62,12 +63,12 @@
         <if test="type != null and type != ''">
             and type = #{type}
         </if>
-        <if test="content != null and content != ''">
+        <if test="word != null and word != ''">
             <if test="key=='title'">
-                and title like concat('%', #{content}, '%')
+                and title like concat('%', #{word}, '%')
             </if>
             <if test="key != 'title'">
-                and ${key} = #{content}
+                and ${key} = #{word}
             </if>
 
         </if>

@@ -2,30 +2,92 @@ package com.ssafy.enjoytrip.board.model.service;
 
 import com.ssafy.enjoytrip.board.model.dto.BoardDto;
 import com.ssafy.enjoytrip.board.model.dto.BoardListDto;
-import com.ssafy.enjoytrip.board.model.dto.FileInfoDto;
 import com.ssafy.enjoytrip.board.model.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class BoardServiceImpl implements BoardService{
 
     private final BoardMapper boardMapper;
-    @Override
-    public void writeArticle(BoardDto boardDto) {
-        boardMapper.writeArticle(boardDto);
+    static final String FOLDER = "/src/main/resources/static/image/";
+    static final String DOMAIN = "http://localhost:80/image/";
+//    @Override
+//    public void writeArticle(BoardDto boardDto) {
+//        boardMapper.writeArticle(boardDto);
+//
+//        //이미지 파일 등록하는 부분 -> 추후 프론트 생성 후 확인 필요!
+//        List<FileInfoDto> fileInfos = boardDto.getFileInfos();
+//        if(fileInfos != null && !fileInfos.isEmpty()){
+//            boardMapper.registerFile(boardDto);
+//        }
+//    }
+@Override
+public void writeArticle(BoardDto boardDto) {
+//    boardMapper.writeArticle(boardDto);
+    boardMapper.writeArticle(boardDto);
+    // Todo: select key로 boadid 매핑
+    //이미지 파일 등록하는 부분 -> 추후 프론트 생성 후 확인 필요!
+//    List<FileInfoDto> fileInfos = boardDto.getFileInfos();
+//    List<FileInfoDto> fileInfos = map.getFileInfos();
+//    if(fileInfos != null && !fileInfos.isEmpty()){
+//        boardMapper.registerFile(boardDto);
+//    }
+//    if(fileInfos != null && !fileInfos.isEmpty()){
+//        boardMapper.registerFile(map);
+//    }
+//    if(boardDto.getFiles()!=null && boardDto.getFiles().length!=0){
+//        boardMapper.registerFile(boardDto);
+//    }
+}
 
-        //이미지 파일 등록하는 부분 -> 추후 프론트 생성 후 확인 필요!
-        List<FileInfoDto> fileInfos = boardDto.getFileInfos();
-        if(fileInfos != null && !fileInfos.isEmpty()){
-            boardMapper.registerFile(boardDto);
+    @Override
+    public void saveImage(MultipartFile[] file, BoardDto boardDto) throws Exception{
+
+        System.out.println("saveImage 함수 들어옴");
+        System.out.println("Service에서 BoardDto"+boardDto);
+
+        String pathDefault = System.getProperty("user.dir").replace('\\', '/');
+        String folder = pathDefault+FOLDER;
+
+        for(MultipartFile f: file){
+            String originalFileName = f.getOriginalFilename();
+            String uploadFileName = UUID.randomUUID()+"_"+originalFileName;
+
+            Map<String, Object> map= new HashMap<>();
+
+            String uploadFilePath = folder+uploadFileName;  //  DB와 연관 없음
+            Path savePath = Paths.get(uploadFilePath);
+            System.out.println("savePath:"+savePath);
+            System.out.println("savePath string값: "+String.valueOf(savePath));
+            String url = DOMAIN+uploadFileName;
+            //  locahost:80/image/image.png =>saveFolder곳에 넣어버리고 얘만 꺼내서 쓰자
+
+            // Todo: 경로 매핑
+            System.out.println(url);
+
+            map.put("articleNo", boardDto.getArticleNo());
+            map.put("imageUrl", url);
+
+            boardMapper.registerFile(map);
+            f.transferTo(savePath); // 실제 파일에 저장
         }
+
+
+        //1. FileInfos 만들기
+        //2. boardMapper.registerFile하는 것
+        //3. File 서버에 저장
+
     }
+
 
     @Override
     public BoardListDto listArticle(Map<String, String> map) {
@@ -58,12 +120,12 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public BoardDto selectByArticleNo(String articleNo) {
+    public BoardDto selectByArticleNo(int articleNo) {
         return boardMapper.selectByArticleNo(articleNo);
     }
 
     @Override
-    public void deleteArticle(String articleNo) {
+    public void deleteArticle(int articleNo) {
         boardMapper.deleteArticle(articleNo);
     }
 

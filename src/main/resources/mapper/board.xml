@@ -63,7 +63,7 @@
         <if test="type != null and type != ''">
             and type = #{type}
         </if>
-        <if test="word != null and word != ''">
+        <if test="key != null and key != '' and word != null and word != ''">
             <if test="key=='title'">
                 and title like concat('%', #{word}, '%')
             </if>

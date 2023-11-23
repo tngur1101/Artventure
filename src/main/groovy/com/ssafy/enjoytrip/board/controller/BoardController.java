@@ -21,6 +21,8 @@ public class BoardController {
     @PostMapping
     public ResponseEntity<?> writeArticle(@ModelAttribute BoardDto boardDto) throws Exception {
         System.out.println("컨트롤러에서 찍는 boardDto"+boardDto.toString());
+        System.out.println("boardDto 파일 길이:"+boardDto.getFiles().length);
+
         boardService.writeArticle(boardDto);
 //        for(FileInfoDto f: boardDto.getFileInfos()){
 //            boardService.saveImage(f.getOriginFile());

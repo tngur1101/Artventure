@@ -80,7 +80,7 @@
         <if test="regionId != null and regionId !=''">
             and region_id = #{regionId}
         </if>
-        <if test="type != null and type != ''">
+        <if test="type != null and type != '' and type != 0">
             and type = #{type}
         </if>
         <if test="key != null and key != '' and word != null and word != ''">

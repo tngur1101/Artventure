@@ -20,6 +20,7 @@
         <result column="feat_time" property="featTime"/>
         <result column="latitude" property="latitude"/>
         <result column="longitude" property="longitude"/>
+        <result column="image_url" property="imageUrl"/>
     </resultMap>
 
     <select id="selectAll" resultMap="member" resultType="MemberDto">
@@ -68,7 +69,7 @@
     </update>
 
     <select id="selectCompleteById" resultMap="complete" parameterType="String">
-        select c.feat_id, c.feat_time, f.name, f.description, f.latitude, f.longitude
+        select c.feat_id, c.feat_time, f.name, f.description, f.latitude, f.longitude, f.image_url
         from feats f
         join completes c
         on f.feat_id = c.feat_id

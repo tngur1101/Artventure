@@ -6,6 +6,7 @@
     <resultMap id="sido" type="Sido">
         <result column="sido_id" property="sidoId"/>
         <result column="name" property="name"/>
+        <result column="image_url" property="imageUrl"/>
     </resultMap>
 
     <resultMap id="complete" type="Complete">
@@ -15,6 +16,8 @@
         <result column="feat_time" property="featTime"/>
         <result column="latitude" property="latitude"/>
         <result column="longitude" property="longitude"/>
+        <result column="image_url" property="imageUrl"/>
+
     </resultMap>
 
     <resultMap id="feat" type="Feat">
@@ -25,16 +28,17 @@
         <result column="latitude" property="latitude"/>
         <result column="longitude" property="longitude"/>
         <result column="order" property="order"/>
+        <result column="image_url" property="imageUrl"/>
     </resultMap>
 
     <select id="selectAllSido" resultMap="sido" resultType="Sido">
-        select sido_id, name
+        select sido_id, name, image_url
         from sido
         where sido_id > 0
     </select>
 
     <select id="selectComplete" resultMap="complete" parameterType="hashmap">
-        select c.feat_id, c.feat_time, f.name, f.description, f.latitude, f.longitude
+        select c.feat_id, c.feat_time, f.name, f.description, f.latitude, f.longitude, f.image_url
         from feats f
         join completes c
         on f.feat_id = c.feat_id

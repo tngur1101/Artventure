@@ -10,4 +10,5 @@ import lombok.*;
 public class Sido {
     private int sidoId;
     private String name;
+    private String imageUrl;
 }

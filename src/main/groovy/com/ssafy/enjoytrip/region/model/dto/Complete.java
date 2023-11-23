@@ -14,4 +14,5 @@ public class Complete {
     private String featTime;
     private double latitude;
     private double longitude;
+    private String imageUrl;
 }

@@ -15,4 +15,5 @@ public class Feat {
     private double latitude;
     private double longitude;
     private int order;
+    private String imageUrl;
 }

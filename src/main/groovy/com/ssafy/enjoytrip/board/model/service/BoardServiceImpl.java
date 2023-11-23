@@ -60,6 +60,7 @@ public void writeArticle(BoardDto boardDto) {
 
         for(MultipartFile f: file){
             String originalFileName = f.getOriginalFilename();
+            if(originalFileName==null || originalFileName.equals("")) continue;
             String uploadFileName = UUID.randomUUID()+"_"+originalFileName;
 
             Map<String, Object> map= new HashMap<>();

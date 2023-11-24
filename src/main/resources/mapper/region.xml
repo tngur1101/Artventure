@@ -49,7 +49,7 @@
     </select>
 
     <select id="selectFeat" resultMap="feat" parameterType="int">
-        select feat_id, name, region_id, description, latitude, longitude, `order`
+        select feat_id, name, region_id, description, latitude, longitude, `order`, image_url
         from feats
         where region_id = #{regionId}
         order by `order` asc
